@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="chat.css">
+    <style>
+        .active {
+            background-color: #dce0f6 !important;
+            color: #1c1c1e !important;
+            border: 1px solid#1c1c1e !important;
+        }
+    </style>
+    <title>ConvoHub</title>
+
+
+</head>
+
+<body>
+    <div class="container my-4 thecard">
+        <h1 class="my-4 text-center">ConvoHub</h1>
+
+        <div class="rooms mb-3 text-center ">
+            <button class="btn mb-2" style="color: #1c1c1e" id="general">GENERAL</button>
+            <button class="btn mb-2" style="color: #1c1c1e" id="gaming">GAMING</button>
+            <button class="btn mb-2" style="color: #1c1c1e" id="movies">MOVIES</button>
+            <button class="btn mb-2" style="color: #1c1c1e" id="music">MUSIC</button>
+            <button class="btn mb-2" style="color: #1c1c1e" id="learning">LEARNING</button>
+        </div>
+
+        <div class="chat-window">
+            <ul class="chat-list list-group"></ul>
+        </div>
+
+        <form class="new-chat my-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text newbtn">New Message</div>
+                </div>
+                <input type="text" class="form-control" id="message" required autocomplete="off">
+                <div class="input-group-append newbtn">
+                    <input type="submit" class="btn newbtn2" style="color: #fff" value="send">
+                </div>
+        </form>
+
+        <form class="new-name my-3"></form>
+    </div>
+    <input type="button" id="signoutbtn" value="Sign Out">
+
+    </div>
+    <script src="js/date-fns-v1.9.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
+
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDZpczE2-Ag1YZJR3ZrA7eXgCq1YgnYv0k",
+            authDomain: "quick-chat-9e2a2.firebaseapp.com",
+            databaseURL: "https://quick-chat-9e2a2-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "quick-chat-9e2a2",
+            storageBucket: "quick-chat-9e2a2.appspot.com",
+            messagingSenderId: "510435336138",
+            appId: "1:510435336138:web:8598961de801a23c867933",
+            measurementId: "G-3BN0L329T8"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.analytics();
+
+        const db = firebase.firestore();
+
+    </script>
+
+    <script src="js/data.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

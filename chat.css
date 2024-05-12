@@ -1,0 +1,117 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to top left, #141E30, #243B55);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    font-family: __satoshi_a629d8, __satoshi_Fallback_a629d8, sans-serif;
+    font-weight: bold;
+    color: #000000;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+.btn {
+    background-color: #dce0f6;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    font-family: __satoshi_a629d8, sans-serif;
+    ;
+}
+
+.btn:hover {
+    background-color: #ffffff;
+    border-color: #ffffff;
+
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.thecard {
+    background: #dce0f6;
+    backdrop-filter: blur(1rem);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    height: 670px;
+}
+
+.btn {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.chat-window {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.newbtn {
+    height: 38px;
+    text-align: center;
+    background-color: #eff1f4;
+    color: #1c1c1e;
+}
+
+.newbtn2 {
+    height: 37.5px;
+    text-align: center;
+    background-color: #1c1c1e;
+}
+
+.newbtn2:hover {
+    background-color: #2a323f;
+}
+
+.btn3 {
+    position: fixed;
+    left: 980px;
+    top: 600px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #1c1c1e;
+}
+
+  #signoutbtn{
+    position: fixed;
+    left: 980px;
+    top: 600px;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 17px;
+    border: 1px solid #1c1c1e;
+    border-radius: 6px;
+    outline: none;
+    color: #fff; 
+    background-color: #1c1c1e;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  #signoutbtn:hover{
+    background: #2a323f;
+  }
+      

@@ -67,7 +67,7 @@ loginBtn.addEventListener('click', () => {
     .then((userCredential) => {
       const user = userCredential.user;
       if (user.emailVerified) {
-        alert('User is signed.');
+        alert('User signed in successfully.');
         location.href = "chat.html";
       } else {
         alert('Please verify your email before signing in.');

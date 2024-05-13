@@ -15,9 +15,9 @@ const signoutBtn = document.querySelector("#signoutbtn");
 signoutBtn.addEventListener("click", () => {
     auth.signOut()
         .then(() => {
-            alert('User signed out successfully');
+            console.log('User signed out successfully');
             localStorage.clear();
-            location.href = "index.html";
+            location.href = "log.html";
         })
         .catch((error) => {
             alert('Error signing out: ', error);
@@ -35,7 +35,9 @@ auth.onAuthStateChanged((user) => {
         usersRef.get().then((doc) => {
             if (doc.exists) {
                 const data = doc.data();
-                const usernameFromFirestore = data.username;                
+                const usernameFromFirestore = data.username;
+                console.log("Username from Firestore:", usernameFromFirestore);
+                
                 // Check if the username is already updated in local storage
                 if (localStorage.getItem("username") !== usernameFromFirestore) {
                     // Update the username in local storage
@@ -68,39 +70,16 @@ chatroom.getChats((data) => {
     chatUI.render(data);
 });
 
-var keySize = 256;
-var ivSize = 128;
-var iterations = 100;
-// Encryption
-function encrypt (msg, pass) {
-  var salt = CryptoJS.lib.WordArray.random(128/8);
-  
-  var key = CryptoJS.PBKDF2(pass, salt, {
-      keySize: keySize/32,
-      iterations: iterations
-    });
-
-  var iv = CryptoJS.lib.WordArray.random(128/8);
-  
-  var encrypted = CryptoJS.AES.encrypt(msg, key, { 
-    iv: iv, 
-    padding: CryptoJS.pad.Pkcs7,
-    mode: CryptoJS.mode.CBC
-  });
-  
-  // salt, iv will be hex 32 in length
-  // append them to the ciphertext for use  in decryption
-  var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
-  return transitmessage;
-}
-
-  const key = "h7HGxKF9J7gJ1znKznjriIVr6rvmSdPb5KBRIlgTD975zekw0D";
 
 newChat.addEventListener("submit", (e) => {
     e.preventDefault();
     const message = newChat.message.value.trim();
-    var text = encrypt(message,key);
-    chatroom.addChat(text)
+    console.log(message);
+    var encrypted = CryptoJS.AES.encrypt(message, "Secret Passphrase");
+    console.log(encrypted);
+    var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase");
+    console.log(decrypted.toString(CryptoJS.enc.Utf8));
+    chatroom.addChat(encrypted.toString(CryptoJS.enc.Utf8))
         .then(() => newChat.reset())
         .catch((error) => console.log(error));
 });

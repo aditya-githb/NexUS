@@ -32,6 +32,16 @@ h5 {
 
 }
 
+.username {
+    display: inline-block;
+    min-width: 50px!important;
+    text-align: center;
+    padding: 1px 5px
+}
+.date {
+    font-size: 0.8em;
+}
+
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -50,6 +60,11 @@ h5 {
     border-radius: 3rem;
     box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
     height: 670px;
+}
+
+
+.new-chat {
+    word-break: break-all;
 }
 
 .btn {

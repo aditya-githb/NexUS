@@ -46,7 +46,6 @@ signupBtn.addEventListener('click', () => {
         .catch((error) => {
           alert('Error sending verification email');
         });
-        console.log('User data saved to Firestore');
         firestore.collection('users').doc(uid).set({
           name: name,
           username: username,

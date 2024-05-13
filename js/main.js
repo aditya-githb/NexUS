@@ -15,9 +15,9 @@ const signoutBtn = document.querySelector("#signoutbtn");
 signoutBtn.addEventListener("click", () => {
     auth.signOut()
         .then(() => {
-            console.log('User signed out successfully');
+            alert('User signed out successfully');
             localStorage.clear();
-            location.href = "log.html";
+            location.href = "index.html";
         })
         .catch((error) => {
             alert('Error signing out: ', error);
@@ -35,9 +35,7 @@ auth.onAuthStateChanged((user) => {
         usersRef.get().then((doc) => {
             if (doc.exists) {
                 const data = doc.data();
-                const usernameFromFirestore = data.username;
-                console.log("Username from Firestore:", usernameFromFirestore);
-                
+                const usernameFromFirestore = data.username;                
                 // Check if the username is already updated in local storage
                 if (localStorage.getItem("username") !== usernameFromFirestore) {
                     // Update the username in local storage
@@ -70,6 +68,9 @@ chatroom.getChats((data) => {
     chatUI.render(data);
 });
 
+var keySize = 256;
+var ivSize = 128;
+var iterations = 100;
 // Encryption
 function encrypt (msg, pass) {
   var salt = CryptoJS.lib.WordArray.random(128/8);
@@ -85,46 +86,21 @@ function encrypt (msg, pass) {
     iv: iv, 
     padding: CryptoJS.pad.Pkcs7,
     mode: CryptoJS.mode.CBC
-    
   });
   
   // salt, iv will be hex 32 in length
   // append them to the ciphertext for use  in decryption
   var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
-  var encodeB4 = CryptoJS.enc.Base64.stringify(transitmessage);
-  return encodeB4;
+  return transitmessage;
 }
 
-// Decryption
-function decrypt (transitmessage, pass) {
-  var decoded = const decoded = CryptoJS.enc.Utf8.stringify(transitmessage);
-
-  var salt = CryptoJS.enc.Hex.parse(decoded.substr(0, 32));
-  var iv = CryptoJS.enc.Hex.parse(decoded.substr(32, 32))
-  var encrypted = decoded.substring(64);
-  
-  var key = CryptoJS.PBKDF2(pass, salt, {
-      keySize: keySize/32,
-      iterations: iterations
-    });
-
-  var decrypted = CryptoJS.AES.decrypt(encrypted, key, { 
-    iv: iv, 
-    padding: CryptoJS.pad.Pkcs7,
-    mode: CryptoJS.mode.CBC
-    
-  })
-  return decrypted;
-}
+  const key = "h7HGxKF9J7gJ1znKznjriIVr6rvmSdPb5KBRIlgTD975zekw0D";
 
 newChat.addEventListener("submit", (e) => {
     e.preventDefault();
     const message = newChat.message.value.trim();
-    var encrypted = CryptoJS.AES.encrypt(message, "Secret Passphrase");
-    console.log(encrypted);
-    var decrypted = CryptoJS.AES.decrypt(encrypted, "Secret Passphrase");
-    console.log(decrypted.toString(CryptoJS.enc.Utf8));
-    chatroom.addChat(message)
+    var text = encrypt(message,key);
+    chatroom.addChat(text)
         .then(() => newChat.reset())
         .catch((error) => console.log(error));
 });

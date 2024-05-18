@@ -15,7 +15,7 @@ const signoutBtn = document.querySelector("#signoutbtn");
 signoutBtn.addEventListener("click", () => {
     auth.signOut()
         .then(() => {
-            console.log('User signed out successfully');
+            alert('User signed out successfully');
             localStorage.clear();
             location.href = "log.html";
         })
@@ -55,8 +55,6 @@ auth.onAuthStateChanged((user) => {
             console.log("Error getting document:", error);
         });
     } else {
-        // User is signed out
-        console.log("User is signed out");
         // Clear the username from local storage when the user signs out
         localStorage.removeItem("username");
     }

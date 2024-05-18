@@ -1,1 +1,1 @@
-https://aditya-githb.github.io/quick_chat/
+https://aditya-githb.github.io/NexUS/log.html

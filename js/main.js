@@ -1,4 +1,3 @@
-// Selecting elements
 const rooms = document.querySelector(".rooms");
 const chatList = document.querySelector(".chat-list");
 const newChat = document.querySelector(".new-chat");
@@ -37,15 +36,10 @@ auth.onAuthStateChanged((user) => {
                 const data = doc.data();
                 const usernameFromFirestore = data.username;
                 console.log("Username from Firestore:", usernameFromFirestore);
-                
-                // Check if the username is already updated in local storage
+        
                 if (localStorage.getItem("username") !== usernameFromFirestore) {
-                    // Update the username in local storage
                     localStorage.setItem("username", usernameFromFirestore);
-                    // Assign the username to the variable
                     username = usernameFromFirestore;
-
-                    // Refresh the page to update the username
                     location.reload();
                 }
             } else {
@@ -55,7 +49,6 @@ auth.onAuthStateChanged((user) => {
             console.log("Error getting document:", error);
         });
     } else {
-        // Clear the username from local storage when the user signs out
         localStorage.removeItem("username");
     }
 });
@@ -89,8 +82,6 @@ function encrypt (msg, pass) {
     mode: CryptoJS.mode.CBC
   });
   
-  // salt, iv will be hex 32 in length
-  // append them to the ciphertext for use  in decryption
   var transitmessage = salt.toString()+ iv.toString() + encrypted.toString();
   return transitmessage;
 }
@@ -106,11 +97,8 @@ newChat.addEventListener("submit", (e) => {
 
 rooms.addEventListener("click", (e) => {
     if (e.target.tagName === "BUTTON") {
-        // Clear the UI
         chatUI.clear();
-        // Update the room
         chatroom.updateRoom(e.target.getAttribute("id"));
-
         chatroom.getChats((data) => chatUI.render(data));
         e.target.classList.add("active");
         for (let sibling of e.target.parentNode.children) {

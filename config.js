@@ -1,4 +1,3 @@
-
 const firebaseConfig = {
   apiKey: "AIzaSyAbFs3-RlHc2jMQcytvS-DE5ziBhsu_as4",
   authDomain: "nexus-chatroom.firebaseapp.com",
